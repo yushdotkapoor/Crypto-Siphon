@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RobinStocks_Health" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m2d-ud-h8A">
+                                <rect key="frame" x="0.0" y="74" width="414" height="788"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="frz-vj-Hbx" customClass="TableViewCell" customModule="RobinStocks_Health" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="frz-vj-Hbx" id="pmb-SE-LiD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sN6-ws-iun">
+                                                    <rect key="frame" x="20" y="10" width="374" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUa-Uq-0Na">
+                                                            <rect key="frame" x="0.0" y="0.0" width="325" height="31"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1by-8R-7we">
+                                                            <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="switchTapped:" destination="frz-vj-Hbx" eventType="valueChanged" id="mWl-Vk-68u"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sN6-ws-iun" secondAttribute="trailing" constant="20" id="RNq-Ue-iLO"/>
+                                                <constraint firstItem="sN6-ws-iun" firstAttribute="leading" secondItem="pmb-SE-LiD" secondAttribute="leading" constant="20" id="dWQ-hZ-1Ii"/>
+                                                <constraint firstItem="sN6-ws-iun" firstAttribute="top" secondItem="pmb-SE-LiD" secondAttribute="top" constant="10" id="eZk-bX-AbH"/>
+                                                <constraint firstAttribute="bottom" secondItem="sN6-ws-iun" secondAttribute="bottom" constant="10" id="tDj-mJ-7wH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="lUa-Uq-0Na" id="7al-1X-O0Q"/>
+                                            <outlet property="sw" destination="1by-8R-7we" id="uV6-88-v1J"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="m2d-ud-h8A" secondAttribute="trailing" id="3po-cn-uyH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="m2d-ud-h8A" secondAttribute="bottom" id="Cno-PD-uLB"/>
+                            <constraint firstItem="m2d-ud-h8A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="IuG-59-3mE"/>
+                            <constraint firstItem="m2d-ud-h8A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rDu-HH-qwq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="m2d-ud-h8A" id="kQZ-mT-bKy"/>
+                        <segue destination="fqZ-7F-pk0" kind="presentation" identifier="toLogs" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="CEZ-XE-prV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="54"/>
+        </scene>
+        <!--Logs-->
+        <scene sceneID="PS6-mT-GyG">
+            <objects>
+                <viewController id="fqZ-7F-pk0" customClass="Logs" customModule="RobinStocks_Health" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lfu-HV-Qvq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fO4-Io-e58">
+                                <rect key="frame" x="20" y="74" width="374" height="822"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="10"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apP-FN-T3s">
+                                <rect key="frame" x="20" y="40" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="back_button:" destination="fqZ-7F-pk0" eventType="touchUpInside" id="KVh-Sw-WCj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oBK-e1-dGx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fO4-Io-e58" firstAttribute="top" secondItem="oBK-e1-dGx" secondAttribute="top" constant="30" id="DFO-SG-q8s"/>
+                            <constraint firstItem="oBK-e1-dGx" firstAttribute="trailing" secondItem="fO4-Io-e58" secondAttribute="trailing" constant="20" id="ID3-ad-Zng"/>
+                            <constraint firstItem="fO4-Io-e58" firstAttribute="leading" secondItem="oBK-e1-dGx" secondAttribute="leading" constant="20" id="VVf-JB-s76"/>
+                            <constraint firstAttribute="bottom" secondItem="fO4-Io-e58" secondAttribute="bottom" id="ZXO-i5-u6j"/>
+                            <constraint firstItem="apP-FN-T3s" firstAttribute="top" secondItem="lfu-HV-Qvq" secondAttribute="top" constant="40" id="gcc-F1-Cwu"/>
+                            <constraint firstItem="apP-FN-T3s" firstAttribute="leading" secondItem="oBK-e1-dGx" secondAttribute="leading" constant="20" id="lEe-SO-lRk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="fO4-Io-e58" id="Zyk-yQ-04C"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LogsToHome" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Vo5-XC-wp7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yf0-bD-NbJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="756.52173913043487" y="53.571428571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -47,6 +47,12 @@ def init_logger():
     logging.setLogRecordFactory(record_factory)
 
 #configuration json
+#config = {
+#  "apiKey": "",
+#  "authDomain": "",
+#  "databaseURL": "",
+#  "storageBucket": ""
+#}
 config = robin_creds.config
 
 
@@ -58,6 +64,8 @@ buy_price = 0
 sell_price = 0
 
 #API KEY and SECRET for the gemini account
+#https://support.gemini.com/hc/en-us/articles/360031080191-How-do-I-create-an-API-key-
+#Create a PRIMARY scope API — NOT A MASTER scope API!
 API_KEY = robin_creds.API_KEY
 API_SECRET = robin_creds.API_SECRET
 
@@ -114,7 +122,6 @@ def reset_High_Lows(min_val, max_val):
     
     
 def get_forecasts():
-    #a = ["E_forecast", "Q_forecast", "H_forecast", "F_forecast"]
     a = ["F_forecast"]
     for i in a:
         forecast(i)
@@ -280,16 +287,12 @@ def action():
     
     immediate_slope, semi_immediate_slope = calculate_immediate_slopes()
     
-#    E_tr = calculate_trend_slope(E_forecast)
-#    Q_tr = calculate_trend_slope(Q_forecast)
-#    H_tr = calculate_trend_slope(H_forecast)
-    F_tr = calculate_trend_slope(F_forecast)
-#    scaled_forcasted_slope = (E_tr * 0.1) + (Q_tr * 0.2) + (H_tr * 0.3) + (F_tr * 0.4)
+    forecast_slope = calculate_trend_slope(F_forecast)
     
     logger.debug("date " + str(datetime.datetime.now()))
     logger.debug("usage_tr " + str(linear_tr))
     logger.debug("immediate_slope " + str(immediate_slope))
-    logger.debug("usage_forecasted_slope " + str(F_tr))
+    logger.debug("usage_forecasted_slope " + str(forecast_slope))
         
     tr_gate = 0
     slope_gate = 0
@@ -301,8 +304,8 @@ def action():
             tr_gate = linear_tr * 0.1
         if immediate_slope < -0.0002:
             slope_gate = immediate_slope * 0.4
-        if F_tr < -0.0001:
-            forecast_gate = F_tr * 0.4
+        if forecast_slope < -0.0001:
+            forecast_gate = forecast_slope * 0.4
         to_act = "sell"
     elif prev_action == "sell":
         #looking to buy
@@ -310,8 +313,8 @@ def action():
             tr_gate = linear_tr * 0.1
         if immediate_slope > 0.0002:
             slope_gate = immediate_slope * 0.4
-        if F_tr > 0.0001:
-            forecast_gate = F_tr * 0.4
+        if forecast_slope > 0.0001:
+            forecast_gate = forecast_slope * 0.4
         to_act = "buy"
         
         
