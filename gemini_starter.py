@@ -110,7 +110,8 @@ F_forecast = [0.25]
 first = True
 
 Mock = True
-Notifiy = True
+Notify = True
+Sound = True
 
 QUIT = False
 
@@ -469,10 +470,10 @@ def check_tresholds():
     if prev_action == "buy":
         if buy_price > target_price and not target_reached:
             target_reached = True
-            playsound('Crypto-Siphon/target.mp3')
+            sound('Crypto-Siphon/target.mp3')
         if buy_price > (target_price * 1.001) and not safe_reached:
             safe_reached = True
-            playsound('Crypto-Siphon/safeThreshold.mp3')
+            sound('Crypto-Siphon/safeThreshold.mp3')
 
 
 def one():
@@ -616,7 +617,7 @@ def mock_transaction(str):
         reset_High_Lows(sell_price, buy_price)
         logger.debug("status {}\nPrice {}\nProspects {}\n".format(str.upper(), sell_price, coins * sell_price))
         sendNotification(str, coins * sell_price, sell_price)
-        playsound('Crypto-Siphon/Buy.mp3')
+        sound('Crypto-Siphon/Buy.mp3')
     elif str == 'sell':
         prev_action = str
         executed_cash = coins * sell_price
@@ -629,7 +630,7 @@ def mock_transaction(str):
         reset_High_Lows(sell_price, buy_price)
         logger.debug("status {}\nPrice {}\nProspects {}\n".format(str.upper(), buy_price, cash))
         sendNotification(str, cash, buy_price)
-        playsound('Crypto-Siphon/Sell.mp3')
+        sound('Crypto-Siphon/Sell.mp3')
     else:
         status = "NONE"
         pros = cash
@@ -724,7 +725,7 @@ def buy(amount):
     else:
         logger.debug("Buying " + str(round_amount) + " of " + Ticker)
     
-    playsound('Crypto-Siphon/Buy.mp3')
+    sound('Crypto-Siphon/Buy.mp3')
     return data.json()
 
 
@@ -740,8 +741,13 @@ def sell():
     else:
         logger.debug("Selling " + str(round_amount) + " of " + Ticker)
         
-    playsound('Crypto-Siphon/Sell.mp3')
+    sound('Crypto-Siphon/Sell.mp3')
     return data.json()
+    
+    
+def sound(file):
+    if Sound:
+        playsound(file)
   
 
 def _get_access_token():
@@ -751,39 +757,40 @@ def _get_access_token():
     
 
 def sendNotification(type, prospects, price):
-    a = ['token', 'token2']
-    for j in a:
-        token = ref.child(j).get().val()
-        url = 'https://fcm.googleapis.com/v1/projects/robinstocks-47aa9/messages:send'
-        fcm_message = { 'message': {
-                            'token': token,
-                            'notification': {
-                                'title' : str(type),
-                                'body' : 'Ticker: ' + str(Ticker) + '\nProspects: ' + str(prospects) + ' \nPrice: ' + str(price)
-                            },
-                        }
-        }
-                    
-        headers = {
-        'Authorization': 'Bearer ' + _get_access_token(),
-        'Content-Type': 'application/json; UTF-8',
-        }
-        #[END use_access_token]
-        response_error = None
-        try:
-            response = requests.post(url, data=json.dumps(fcm_message), headers=headers)
-            response.raise_for_status()
-        except Exception as e:
-            response_error = e
-            logger.debug(response_error)
-            
-        if response.status_code == 200:
-            logger.debug('Message sent to Firebase for delivery, response:')
-            logger.debug(response.text)
-            
-        else:
-            logger.debug('Unable to send message to Firebase')
-            logger.debug(response.text)
+    if Notify:
+        a = ['token', 'token2']
+        for j in a:
+            token = ref.child(j).get().val()
+            url = 'https://fcm.googleapis.com/v1/projects/robinstocks-47aa9/messages:send'
+            fcm_message = { 'message': {
+                                'token': token,
+                                'notification': {
+                                    'title' : str(type),
+                                    'body' : 'Ticker: ' + str(Ticker) + '\nProspects: ' + str(prospects) + ' \nPrice: ' + str(price)
+                                },
+                            }
+            }
+                        
+            headers = {
+            'Authorization': 'Bearer ' + _get_access_token(),
+            'Content-Type': 'application/json; UTF-8',
+            }
+            #[END use_access_token]
+            response_error = None
+            try:
+                response = requests.post(url, data=json.dumps(fcm_message), headers=headers)
+                response.raise_for_status()
+            except Exception as e:
+                response_error = e
+                logger.debug(response_error)
+                
+            if response.status_code == 200:
+                logger.debug('Message sent to Firebase for delivery, response:')
+                logger.debug(response.text)
+                
+            else:
+                logger.debug('Unable to send message to Firebase')
+                logger.debug(response.text)
         
     
     

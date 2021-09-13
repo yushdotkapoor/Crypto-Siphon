@@ -4,6 +4,8 @@ robinhood.py
 robinStart.py
 robin_creds.py
 robinstocks_admin_key.json
-/Archive/
+/Archive/*
+!/Archive/lambda_function.py
 /__pycache__/
 GoogleService-Info.plist
+
