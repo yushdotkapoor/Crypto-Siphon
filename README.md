@@ -6,7 +6,7 @@
 This project is attempting to buy and sell cryptocurrency based on its trends and forecasts to "Siphon" value from the cryptocurrency's volatility.
 The main function runs on Python, but there is an iOS/macOS primitive interface that can go along with it. If you choose to integrate with iOS (reccomended), then you will recieve buy/sell notifications and get notified if there are any errors present in the code (network issues, etc.)
 Robinhood has a big flaw in that orders can sometimes take hours to execute, so I will not be primarily pushing for robinhood, but the files are there for you to use.
-**PLEASE NOTE: This is NOT a finished project and does NOT guarantee profit increase.**
+###**PLEASE NOTE: This is NOT a finished project and does NOT guarantee profit increase. Testing has shown that fees and spread of to exchange are causing a profit decrease.**
 
 ## Requirements
  You will need a Gemini and Firebase account, and an AWS account is recommended.
